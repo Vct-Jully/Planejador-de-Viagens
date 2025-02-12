@@ -1,6 +1,6 @@
 # Planejador-de-Viagens
 Este projeto está sendo desenvolvido para a disciplina de **Projeto de Software** e visa criar um **planejador de itinerário de viagem interativo e personalizado**.
-
+- Victória Júllya Cabral da Silva
 ### Classes e Funcionalidades:
 ---
 #### Classe `Itinerary`:
