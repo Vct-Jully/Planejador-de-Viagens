@@ -40,7 +40,7 @@ class Itinerary:
     def show_itinerary(self):
         if not self._activities:
             print("\nAinda não há atividades no itinerário.")
-            return  # Return early if no activities
+            return  
 
         print("\nItinerário de Viagem:")
         if self.trip_data:
@@ -48,7 +48,7 @@ class Itinerary:
             print(f'{index}. {activity["nome"]}')
             for key, value in self.trip_data.items():
                 print(f"{key.replace('_', ' ').title()}: {value}")
-            print("-" * 20) #separator line
+            print("-" * 20) 
 
 class DestinationInfo:
     def __init__(self):
