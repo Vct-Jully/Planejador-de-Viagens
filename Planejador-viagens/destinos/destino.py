@@ -24,14 +24,38 @@ class DestinationInfo:
           "Buenos Aires": {"descrição": "Cidade argentina com rica cultura do tango e arquitetura colonial.", "preço": "Baixo", "continente": "América do Sul"}
       }
 
-  def list_destinations(self):
-      print("\nDestinos disponíveis:")
-      for dest in self._destinations.keys():
-          print(f"- {dest}")
-
-  def get_info(self, destination_name):
-      if destination_name in self._destinations:
-          info = self._destinations[destination_name]
-          print(f"\n{destination_name}: {info['descrição']} (Preço: {info['preço']}, Continente: {info['continente']})")
+  def get_info(self, price_preference=None, preferred_continent=None):
+      print("\nDestinos disponíveis: ---------------------------------\n")
+      if price_preference and preferred_continent:
+          filtered_destinations = self._filter_destinations(price_preference, preferred_continent)
+          for dest in filtered_destinations:
+              print(f'- {dest}')
       else:
-          print("Destino não encontrado.")
+          for dest in self._destinations.keys():
+              print(f'- {dest}')
+
+      choice = input("\nEscolha um destino para mais informações (digite 'sair' para voltar): ")
+      if choice.lower() == 'sair':
+          return
+
+      closest_match = self._find_closest_match(choice)
+      print(f'\n{self._destinations.get(closest_match, "Destino não encontrado")}')
+
+  def _filter_destinations(self, price_preference, preferred_continent):
+      filtered_destinations = []
+      for dest, info in self._destinations.items():
+          if info["preço"] == price_preference and info["continente"] == preferred_continent:
+              filtered_destinations.append(dest)
+      return filtered_destinations
+
+  def _find_closest_match(self, user_input):
+      user_input_lower = user_input.lower()
+      closest_match = None
+      min_distance = float('inf')
+      for dest in self._destinations.keys():
+          dest_lower = dest.lower()
+          distance = sum(1 for a, b in zip(user_input_lower, dest_lower) if a != b)
+          if distance < min_distance:
+              min_distance = distance
+              closest_match = dest
+      return closest_match
