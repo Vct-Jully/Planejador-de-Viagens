@@ -1,0 +1,1 @@
+from .destino import DestinationInfo
