@@ -19,13 +19,12 @@ def menu():
             itinerary.exibir_info()  
             index = int(get_user_input("Digite o número da atividade a ser removida: ")) - 1
             itinerary.remove_activity(index)
-
         elif choice == "3":
             itinerary.exibir_info()
         elif choice == "4":
-            destination_info.list_destinations()
-            dest = get_user_input("Escolha um destino para detalhes: ")
-            destination_info.get_info(dest)
+            price_pref = get_user_input("\nPreferência de preço (Baixo, Médio, Alto): ")
+            continent_pref = get_user_input("Continente preferido (Europa, Ásia, América do Sul, América do Norte, África, Oceania, ): ")
+            destination_info.get_info(price_pref, continent_pref)
         elif choice == "5":
             categoria = get_user_input("Categoria da despesa: ")
             valor = float(get_user_input("Valor gasto (R$): "))
